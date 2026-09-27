@@ -9,7 +9,7 @@ Module module() {
       dependency(repository: "github", name: "micronaut.data.processor", version: 2),
       dependency(repository: "github", name: "micronaut.jdbc.hikari", version: 2),
       dependency(repository: "github", name: "h2.database", version: 2),
-      dependency(repository: "github", name: "micronaut.web", version: 7),
+      dependency(repository: "github", name: "micronaut.web", version: 8),
       dependency(repository: "github", name: "micronaut.inject", version: 3),
       dependency(repository: "github", name: "micronaut.inject.processor", version: 4)
     ]
