@@ -1,0 +1,51 @@
+package sample.jdbc
+
+import micronaut.data.jdbc.Dialect
+import micronaut.data.jdbc.annotation.JdbcRepository
+import micronaut.data.model.annotation.Id
+import micronaut.data.model.annotation.MappedEntity
+import micronaut.data.model.repository.CrudRepository
+import micronaut.core.annotation.Introspected
+import micronaut.core.annotation.IntrospectedAccessKind
+import micronaut.inject.context.ApplicationContext
+import micronaut.inject.context.applicationContextRun
+import micronaut.inject.javaStringArrayNew
+import micronaut.web.DataSources
+import micronaut.web.MicronautConfig
+import micronaut.web.h2DataSource
+import std.configuration.configurationProperties
+
+@MappedEntity(value: "notes")
+@Introspected(accessKind: [IntrospectedAccessKind.FIELD])
+class Note {
+  @Id()
+  Long id
+  String text
+
+  Note(Long id, String text) {
+    this.id = id
+    this.text = text
+  }
+}
+
+@JdbcRepository(dialect: Dialect.H2)
+interface Notes extends CrudRepository<Note, Long> {}
+
+Void main() {
+  var database = h2DataSource(database: "sample_notes;INIT=CREATE TABLE IF NOT EXISTS notes(id BIGINT PRIMARY KEY, text VARCHAR(255))")
+  ApplicationContext context = applicationContextRun<ApplicationContext>(
+    arg0: ApplicationContext.class,
+    arg1: configurationProperties(value: MicronautConfig(datasources: DataSources(defaultSource: database))),
+    arg2: javaStringArrayNew(size: 0)
+  )!!
+  try {
+    Notes notes = context.getBean(Notes.class)!!
+    Long id = 1
+    Note saved = notes.save(Note(id: id, text: "Hello, Norm"))!!
+    Note found = notes.findById(saved.id)!!
+    require(condition: found.text == "Hello, Norm", message: "JDBC query did not return the inserted note")
+    printLine(found.text)
+  } finally {
+    context.close()
+  }
+}
