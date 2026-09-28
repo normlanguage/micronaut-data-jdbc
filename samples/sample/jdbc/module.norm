@@ -3,14 +3,14 @@ Module module() {
     name: "sample.jdbc",
     version: 1,
     dependencies: [
-      dependency(repository: "github", name: "micronaut.data.jdbc", version: 2),
-      dependency(repository: "github", name: "micronaut.data.model", version: 2),
-      dependency(repository: "github", name: "micronaut.core", version: 3),
+      dependency(repository: "github", name: "micronaut.data.jdbc", version: 3),
+      dependency(repository: "github", name: "micronaut.data.model", version: 3),
+      dependency(repository: "github", name: "micronaut.core", version: 4),
       dependency(repository: "github", name: "micronaut.data.processor", version: 2),
       dependency(repository: "github", name: "micronaut.jdbc.hikari", version: 2),
       dependency(repository: "github", name: "h2.database", version: 2),
-      dependency(repository: "github", name: "micronaut.web", version: 8),
-      dependency(repository: "github", name: "micronaut.inject", version: 3),
+      dependency(repository: "github", name: "micronaut.web", version: 9),
+      dependency(repository: "github", name: "micronaut.inject", version: 4),
       dependency(repository: "github", name: "micronaut.inject.processor", version: 4)
     ]
   )

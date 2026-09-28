@@ -1,4 +1,4 @@
-package micronaut.data.jdbc
+package binding
 
 import micronaut.data.jdbc.annotation.JdbcRepository
 import micronaut.data.jdbc.Dialect
@@ -8,7 +8,6 @@ interface Messages {
 }
 
 Void main() {
-  if Messages.class.annotation<JdbcRepository>() != null {
-    printLine("jdbc repository")
-  }
+  require(condition: Messages.class.annotation<JdbcRepository>() != null, message: "JdbcRepository binding is missing")
+  printLine("jdbc repository")
 }
