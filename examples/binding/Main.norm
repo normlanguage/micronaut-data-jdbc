@@ -1,6 +1,6 @@
 package binding
 
-import micronaut.data.jdbc.annotation.JdbcRepository
+import micronaut.data.jdbc.JdbcRepository
 import micronaut.data.jdbc.Dialect
 
 @JdbcRepository(dialect: Dialect.H2)
