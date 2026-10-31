@@ -1,10 +1,10 @@
 package sample.jdbc
 
 import micronaut.data.jdbc.Dialect
-import micronaut.data.jdbc.annotation.JdbcRepository
-import micronaut.data.model.annotation.Id
-import micronaut.data.model.annotation.MappedEntity
-import micronaut.data.model.repository.CrudRepository
+import micronaut.data.jdbc.JdbcRepository
+import micronaut.data.model.Id
+import micronaut.data.model.MappedEntity
+import micronaut.data.model.CrudRepository
 import micronaut.core.annotation.Introspected
 import micronaut.core.annotation.IntrospectedAccessKind
 import micronaut.inject.context.ApplicationContext
@@ -42,7 +42,7 @@ Void main() {
     Notes notes = context.getBean(Notes.class)!!
     Long id = 1
     Note saved = notes.save(Note(id: id, text: "Hello, Norm"))!!
-    Note found = notes.findById(saved.id)!!
+    Note found = notes.findById(saved.id)!!.get()!!
     require(condition: found.text == "Hello, Norm", message: "JDBC query did not return the inserted note")
     printLine(found.text)
   } finally {

@@ -4,7 +4,7 @@ Module module() {
     version: 1,
     dependencies: [
       dependency(repository: "github", name: "micronaut.data.jdbc", version: 4),
-      dependency(repository: "github", name: "micronaut.data.model", version: 4),
+      dependency(repository: "github", name: "micronaut.data.model", version: 5),
       dependency(repository: "github", name: "micronaut.core", version: 7),
       dependency(repository: "github", name: "micronaut.data.processor", version: 3),
       dependency(repository: "github", name: "micronaut.jdbc.hikari", version: 6),
